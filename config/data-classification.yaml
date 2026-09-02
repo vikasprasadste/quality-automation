@@ -1,0 +1,15 @@
+policy:
+  residency: India
+  ci_data_classification: synthetic
+  production_data_in_ci: prohibited
+  direct_identifiers_in_artifacts: prohibited
+  secrets_in_artifacts: prohibited
+  external_ai_provider_data: synthetic-only-until-approved
+redact_fields:
+  - authorization
+  - cookie
+  - password
+  - access_token
+  - refresh_token
+  - email
+  - phone

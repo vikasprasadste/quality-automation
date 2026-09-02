@@ -1,0 +1,41 @@
+name: Mobile regression
+
+on:
+  workflow_dispatch:
+    inputs:
+      platform:
+        description: Mobile platform
+        required: true
+        default: android
+        type: choice
+        options: [android, ios]
+
+permissions:
+  contents: read
+
+jobs:
+  mobile:
+    runs-on: ${{ inputs.platform == 'ios' && 'macos-latest' || 'ubuntu-latest' }}
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Validate mobile build input
+        run: test -n "$MOBILE_APP_PATH"
+        env:
+          MOBILE_APP_PATH: ${{ vars.MOBILE_APP_PATH }}
+      - run: npm run test:mobile
+        env:
+          MOBILE_APP_PATH: ${{ vars.MOBILE_APP_PATH }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mobilewright-results-${{ inputs.platform }}
+          path: |
+            mobilewright-report
+            test-results
+          retention-days: 7

@@ -1,0 +1,13 @@
+pull_request:
+  api_smoke_pass_rate: 100
+  web_smoke_pass_rate: 100
+  admin_smoke_pass_rate: 100
+  mobile_smoke_pass_rate: 100
+  critical_failures_allowed: 0
+release:
+  critical_failures_allowed: 0
+  flaky_test_rate_percent_max: 1
+future_ai:
+  schema_compliance_percent: 100
+  safety_violations_allowed: 0
+  critical_scenario_pass_rate_percent: 95
