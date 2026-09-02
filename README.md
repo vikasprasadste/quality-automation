@@ -1,4 +1,4 @@
-# Edvantaze quality automation
+# quality automation
 
 Central automation for the Edvantaze mobile application, web application, admin portal, backend APIs, and future AI capabilities.
 
